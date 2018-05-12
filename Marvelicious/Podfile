@@ -1,0 +1,30 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'Marvelicious' do
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+
+  plugin 'cocoapods-keys', {
+    :project => "Marvelicious",
+    :keys => [
+      "MarvelApiKey",
+      "MarvelPrivateKey"
+    ]}
+
+  # Pods for Marvelicious
+  pod 'Alamofire'
+  pod 'AlamofireImage'
+  pod 'CryptoSwift'
+
+  target 'MarveliciousTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'MarveliciousUITests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
