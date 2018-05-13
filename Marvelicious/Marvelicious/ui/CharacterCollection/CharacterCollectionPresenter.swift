@@ -20,14 +20,14 @@ extension CharacterCollectionPresenter {
     }
 }
 
-final class CharacterCollectionPresenter: Presenter {
+final class CharacterCollectionPresenter: Presenter, CharacterCollectionDataSource {
     typealias Response = (data: [Character]?, error: Error?)
 
     // MARK: - Module
     var dataSource: CharacterService?
 
-    // MARK: - ViewDataSource
-    override func loadData() {
+    // MARK: - CharacterCollectionDataSource
+    func loadData() {
         userInterface?.render(state: CharacterCollectionViewState.loading())
         dataSource?.characters(
             query: nil,
@@ -39,6 +39,7 @@ final class CharacterCollectionPresenter: Presenter {
 
     func search(query: String) {
         userInterface?.render(state: CharacterCollectionViewState.loading())
+        
         dataSource?.characters(
             query: query,
             completion: { [weak self] (response: Response) in

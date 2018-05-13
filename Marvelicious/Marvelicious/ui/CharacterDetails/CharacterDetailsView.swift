@@ -12,13 +12,11 @@ extension CharacterDetailsView {
     /**
      factory method to create CharacterDetailsView instance
      */
-    static func view(character: Character, builder: ModuleBuilder = ModuleBuilder()) -> View {
+    static func view(character: Character) -> View {
         let view = self.init()
         view.character = character
-        //For now use simple view with character item, no need for presenter, etc
-        return builder
-            .add(view: view)
-            .build()
+        //For now use simple view with character item, no need for presenter, router, datasource etc
+        return view
     }
 }
 
@@ -105,7 +103,7 @@ final class CharacterDetailsView: View {
             descriptionLabel
                 .trailingAnchor
                 .constraint(equalTo: margins.trailingAnchor,
-                            constant: localConstants.space),
+                            constant: -localConstants.space),
             descriptionLabel
                 .topAnchor
                 .constraint(equalTo: imageView.bottomAnchor,

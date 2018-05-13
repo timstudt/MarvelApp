@@ -84,11 +84,10 @@ extension Alamofire.DataRequest: NetworkTask {
         logger: NetworkLoggable? = nil,
         completionHandler: @escaping (NetworkResponse<T>) -> Void)
         -> Self where T: Decodable {
-            return
-                log(logger)
-                .responseData(completionHandler: { (response) in
+            return responseData(completionHandler: { (response) in
                     let networkResponse: NetworkResponse<T> =
-                        self.parse(
+                    self.log(logger)
+                        .parse(
                             response: response,
                             serializer: serializer)
                     completionHandler(networkResponse)

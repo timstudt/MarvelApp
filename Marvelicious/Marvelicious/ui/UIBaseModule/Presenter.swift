@@ -8,10 +8,7 @@
 
 import Foundation
 
-class Presenter: NSObject, ViewDataSource {
+class Presenter {
     // MARK: - Module
     weak var userInterface: PresenterOutput?
-
-    // MARK: - ViewDataSource
-    func loadData() { }
 }

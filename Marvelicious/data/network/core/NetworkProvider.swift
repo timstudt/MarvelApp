@@ -11,7 +11,7 @@ import Foundation
 public typealias NetworkResponse<T: Decodable> = (data: T?, error: Error?)
 
 /**
- Base Network provider, 
+ Protocol Network provider for handling URLRequest and calling completion handler with decoded response value
  */
 protocol NetworkProvider: DataRequestable {
     var logger: NetworkLoggable? { get set }

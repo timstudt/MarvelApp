@@ -64,26 +64,42 @@ extension MarvelAPI {
     public func url(for endpoint: MarvelEndpoint) -> URL {
         return defaultURLBuilder
             .add(path: endpoint.path)
+            .add(parameters: endpoint.parameters)
             .build()!
     }
 }
 
 public enum MarvelEndpoint {
     case characters(String?)
+    case character(Int)
 
     var path: String {
         switch self {
-        case .characters(let id) where id != nil:
-            return "characters/\(id!)"
         case .characters:
             return "characters"
+        case .character(let id):
+            return "characters/\(id)"
         }
     }
 
     var method: HTTPMethod {
         switch self {
-        case .characters:
+        case .characters,
+             .character:
             return .get
         }
+    }
+    
+    var parameters: Parameters {
+        switch self {
+        case .characters(let query) where query?.isEmpty == false:
+            return ["limit": "100",
+                    "nameStartsWith": query!]
+        case .characters:
+            return ["limit": "100"]
+        case .character:
+            return [:]
+        }
+
     }
 }

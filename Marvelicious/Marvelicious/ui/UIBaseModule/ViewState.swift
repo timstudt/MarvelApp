@@ -18,8 +18,4 @@ class ViewState<T>: ViewStateProtocol {
         self.error = error
         self.data = data
     }
-
-    //    static func data<T>(_ data: [T]) -> Self {
-    //        return ViewState<T>.init(data: data)
-    //    }
 }

@@ -9,7 +9,9 @@
 import UIKit
 
 extension CharacterCollectionView {
-    static func view(builder: CharacterCollectionModuleBuilder = CharacterCollectionModuleBuilder()) -> CharacterCollectionView {
+    static func view(
+        builder: CharacterCollectionModuleBuilder = CharacterCollectionModuleBuilder())
+        -> CharacterCollectionView {
         let view = self.init()
         return builder
             .add(presenter: CharacterCollectionPresenter.presenter())
@@ -19,16 +21,21 @@ extension CharacterCollectionView {
     }
 }
 
-final class CharacterCollectionView: View {
+final class CharacterCollectionView: UIViewController, PresenterOutput {
 
+    // MARK: - Module
+    var dataSource: CharacterCollectionDataSource?
     var router: CharacterCollectionRoutable?
+    
     let collectionViewDataSource = CollectionViewDataSource<CharacterCollectionViewCellConfigurator>()
+    let searchController = UISearchController(searchResultsController: nil)
 
     // MARK: - subiews
     lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.itemSize = CGSize(width: 100, height: 100)
         flowLayout.minimumInteritemSpacing = 8
+        flowLayout.sectionInset = UIEdgeInsets(top: 16, left: 8, bottom: 8, right: 8)
         flowLayout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: view.bounds,
                                               collectionViewLayout: flowLayout)
@@ -42,8 +49,12 @@ final class CharacterCollectionView: View {
         dataSource?.loadData()
     }
 
-    // MARK: - View override
-    override func render(state: ViewStateProtocol) {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    // MARK: - PresenterOutput
+    func render(state: ViewStateProtocol) {
         guard let state = state as? CharacterCollectionViewState else { return }
         collectionViewDataSource.data = state.data
         //TODO error handling
@@ -53,8 +64,13 @@ final class CharacterCollectionView: View {
     private func setupViews() {
         title = "Marvel"
 
-        navigationController?.hidesBarsOnSwipe = true
+        navigationItem.hidesSearchBarWhenScrolling = true
 
+        setupCollectionView()
+        setupSearchController()
+    }
+
+    private func setupCollectionView() {
         collectionView.contentInsetAdjustmentBehavior = .always
         collectionView.backgroundColor = .white
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -63,7 +79,15 @@ final class CharacterCollectionView: View {
         collectionViewDataSource.collectionView = collectionView
         collectionView.delegate = self
     }
-
+    
+    private func setupSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Characters"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+    }
+    
     private func setupConstraints() {
         guard let margins = view else { return }
         NSLayoutConstraint.activate([
@@ -87,5 +111,13 @@ extension CharacterCollectionView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let character = collectionViewDataSource.data?[indexPath.row] else { return }
         router?.route(to: .characterDetails(character))
+    }
+}
+
+extension CharacterCollectionView: UISearchResultsUpdating {
+    // MARK: - UISearchResultsUpdating Delegate
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let query = searchController.searchBar.text else { return }
+        dataSource?.search(query: query)
     }
 }
