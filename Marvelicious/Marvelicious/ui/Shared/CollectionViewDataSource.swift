@@ -59,7 +59,7 @@ public class CollectionViewDataSource<CellConfiguratorType: NSObject>:
         }
         return cell
     }
-    
+
     public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionElementKindSectionHeader {
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "StatusHeader", for: indexPath) as! CollectionViewHeader

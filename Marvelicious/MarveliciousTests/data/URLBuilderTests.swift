@@ -53,7 +53,7 @@ class URLBuilderTests: XCTestCase {
         let expectedURL = URL(string: "\(testURL.absoluteURL)?query=hello&limit=10")!
         XCTAssertEqual(builder.build(), expectedURL, "unexpected url returned")
     }
-    
+
    func testPathAndQuery() {
         builder.add(queries: [URLQueryItem(name: "query", value: "hello")])
         builder.add(path: "hello")

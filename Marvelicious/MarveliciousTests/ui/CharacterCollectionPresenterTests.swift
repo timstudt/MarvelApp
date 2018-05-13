@@ -12,10 +12,10 @@ import XCTest
 class MockCharacterService: CharacterService {
 
     var didCallLoadCharacters = false
-    
-    var testData:[Marvelicious.Character]?
+
+    var testData: [Marvelicious.Character]?
     var testError: Error?
-    
+
     func characters(query: String?, completion: @escaping ((data: [Marvelicious.Character]?, error: Error?)) -> Void) {
         didCallLoadCharacters = true
         completion((testData, testError))
@@ -28,7 +28,7 @@ class MockUserInterface: PresenterOutput {
 
     var error: Error?
     var isLoading = false
-    
+
     func render(state: ViewStateProtocol) {
         didCallRender = true
         error = state.error
@@ -37,24 +37,24 @@ class MockUserInterface: PresenterOutput {
 }
 
 class CharacterCollectionPresenterTests: XCTestCase {
-    
+
     var sut: CharacterCollectionPresenter!
-    
+
     override func setUp() {
         super.setUp()
         sut = CharacterCollectionPresenter()
     }
-    
+
     override func tearDown() {
         sut = nil
         super.tearDown()
     }
-    
+
     func testSetupNil() {
         XCTAssertNil(sut.dataSource)
         XCTAssertNil(sut.userInterface)
     }
-    
+
     func testSetup() {
         sut = CharacterCollectionPresenter.presenter()
         XCTAssertNotNil(sut.dataSource)
@@ -66,10 +66,10 @@ class CharacterCollectionPresenterTests: XCTestCase {
         sut.dataSource = mockDataSource
         let mockInterface = MockUserInterface()
         sut.userInterface = mockInterface
- 
+
         XCTAssertFalse(mockInterface.didCallRender)
         XCTAssertFalse(mockDataSource.didCallLoadCharacters)
-        
+
         sut.loadData()
         XCTAssertTrue(mockInterface.didCallRender)
         XCTAssertTrue(mockDataSource.didCallLoadCharacters)
@@ -81,5 +81,5 @@ class CharacterCollectionPresenterTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-    
+
 }

@@ -33,12 +33,12 @@ public class CollectionViewHeader: UICollectionReusableView {
         addSubview(label)
         return label
     }()
-    
+
     override public func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
         setupConstraints()
     }
-    
+
     private func setupConstraints() {
         let margins = self.safeAreaLayoutGuide
         NSLayoutConstraint.activate([

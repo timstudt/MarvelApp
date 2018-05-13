@@ -11,48 +11,48 @@ import XCTest
 
 class MarvelEndpointTests: XCTestCase {
     var sut: MarvelEndpoint!
-    
+
     override func setUp() {
         super.setUp()
     }
-    
+
     override func tearDown() {
         super.tearDown()
     }
-    
+
     func testCharactersNilQuery() {
         sut = MarvelEndpoint.characters(nil)
         XCTAssertEqual(sut.method.rawValue, "GET")
         XCTAssertEqual(sut.path, "characters")
         XCTAssertEqual(sut.parameters, ["limit": "100"])
     }
-    
+
     func testCharactersEmptyQuery() {
         sut = MarvelEndpoint.characters("")
         XCTAssertEqual(sut.method.rawValue, "GET")
         XCTAssertEqual(sut.path, "characters")
         XCTAssertEqual(sut.parameters, ["limit": "100"])
     }
-    
+
     func testCharactersQuery() {
         sut = MarvelEndpoint.characters("hello")
         XCTAssertEqual(sut.method.rawValue, "GET")
         XCTAssertEqual(sut.path, "characters")
         XCTAssertEqual(sut.parameters, ["limit": "100", "nameStartsWith": "hello"])
     }
-    
+
     func testCharacterId() {
         sut = MarvelEndpoint.character(1234)
         XCTAssertEqual(sut.method.rawValue, "GET")
         XCTAssertEqual(sut.path, "characters/1234")
         XCTAssertEqual(sut.parameters, [:])
     }
-    
+
  func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {
             // Put the code you want to measure the time of here.
         }
     }
-    
+
 }

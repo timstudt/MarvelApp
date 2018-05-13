@@ -26,7 +26,7 @@ final class CharacterCollectionView: UIViewController, PresenterOutput {
     // MARK: - Module
     var dataSource: CharacterCollectionDataSource?
     var router: CharacterCollectionRoutable?
-    
+
     let collectionViewDataSource = CollectionViewDataSource<CharacterCollectionViewCellConfigurator>()
     let searchController = UISearchController(searchResultsController: nil)
 
@@ -53,7 +53,7 @@ final class CharacterCollectionView: UIViewController, PresenterOutput {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
-    
+
     // MARK: - PresenterOutput
     func render(state: ViewStateProtocol) {
         guard let state = state as? CharacterCollectionViewState else { return }
@@ -81,7 +81,7 @@ final class CharacterCollectionView: UIViewController, PresenterOutput {
         collectionViewDataSource.collectionView = collectionView
         collectionView.delegate = self
     }
-    
+
     private func setupSearchController() {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -89,7 +89,7 @@ final class CharacterCollectionView: UIViewController, PresenterOutput {
         navigationItem.searchController = searchController
         definesPresentationContext = true
     }
-    
+
     private func setupConstraints() {
         guard let margins = view else { return }
         NSLayoutConstraint.activate([

@@ -10,22 +10,21 @@ import Foundation
 
 class DataLoader {
     var data: Data?
-    
+
     func load(filename: String, fileType: String) throws {
-        guard let filePath = Bundle(for: type(of: self)).path(forResource: filename, ofType:fileType) else {
+        guard let filePath = Bundle(for: type(of: self)).path(forResource: filename, ofType: fileType) else {
             print("DefaultUnwrapper: invalid resource name: \(filename)")
             throw(NSError())
         }
-        
-        do{
+
+        do {
             let data = try Data.init(contentsOf: URL(fileURLWithPath: filePath), options: .uncached)
             self.data = data
-        }
-        catch let error{
+        } catch let error {
             print(error)
         }
     }
-    
+
     func parse<T: Decodable>() -> T? {
         guard let data = data else { return nil }
         return DataParser.parseJSON(from: data)

@@ -39,7 +39,7 @@ final class CharacterCollectionPresenter: Presenter, CharacterCollectionDataSour
 
     func search(query: String) {
         userInterface?.render(state: CharacterCollectionViewState.loading())
-        
+
         dataSource?.characters(
             query: query,
             completion: { [weak self] (response: Response) in

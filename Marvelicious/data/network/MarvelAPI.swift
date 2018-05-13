@@ -89,7 +89,7 @@ public enum MarvelEndpoint {
             return .get
         }
     }
-    
+
     var parameters: Parameters {
         switch self {
         case .characters(let query) where query?.isEmpty == false:

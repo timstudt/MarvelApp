@@ -11,7 +11,7 @@ import XCTest
 
 class MockViewController: UIViewController {
     var didCallShow = false
-    
+
     override func show(_ vc: UIViewController, sender: Any?) {
         didCallShow = true
     }
@@ -19,17 +19,17 @@ class MockViewController: UIViewController {
 
 class CharacterCollectionRouterTests: XCTestCase {
     var sut: CharacterCollectionRouter!
-    
+
     override func setUp() {
         super.setUp()
         sut = CharacterCollectionRouter()
     }
-    
+
     override func tearDown() {
         sut = nil
         super.tearDown()
     }
-    
+
     func testRoute() {
         let mockViewController = MockViewController()
         sut.viewController = mockViewController
@@ -37,12 +37,12 @@ class CharacterCollectionRouterTests: XCTestCase {
         sut.route(to: .characterDetails(Marvelicious.Character()))
         XCTAssertTrue(mockViewController.didCallShow)
     }
-    
+
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {
             // Put the code you want to measure the time of here.
         }
     }
-    
+
 }

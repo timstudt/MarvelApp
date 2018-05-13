@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class View: UIViewController, PresenterOutput {
     // MARK: - PresenterOutput
     func render(state: ViewStateProtocol) { }

@@ -11,12 +11,12 @@ import XCTest
 
 class CharacterDetailsViewTests: XCTestCase {
     var sut: CharacterDetailsView!
-    
+
     override func setUp() {
         super.setUp()
         sut = CharacterDetailsView(nibName: nil, bundle: nil)
     }
-    
+
     override func tearDown() {
         sut = nil
         super.tearDown()
@@ -27,7 +27,7 @@ class CharacterDetailsViewTests: XCTestCase {
     }
 
     func testSubviewContentNil() {
-        let _ = sut.view
+        _ = sut.view
         XCTAssertNil(sut.imageView.image, "")
         XCTAssertNil(sut.descriptionLabel.text, "")
     }
@@ -36,7 +36,7 @@ class CharacterDetailsViewTests: XCTestCase {
         let dataLoader = DataLoader()
         try! dataLoader.load(filename: "character", fileType: "json")
         sut.character = dataLoader.parse()
-        let _ = sut.view
+        _ = sut.view
         XCTAssertNotNil(sut.title, "")
         XCTAssertNotNil(sut.descriptionLabel.text, "")
         XCTAssertEqual(sut.title, "Hulk")
@@ -49,5 +49,5 @@ class CharacterDetailsViewTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-    
+
 }
