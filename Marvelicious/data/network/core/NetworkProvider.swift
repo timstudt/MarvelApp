@@ -18,12 +18,6 @@ protocol NetworkProvider: DataRequestable {
 }
 
 protocol DataRequestable {
-//    @discardableResult
-//    func send(
-//        request: URLRequest,
-//        completion: @escaping (NetworkResponse<Data>) -> Void)
-//        -> NetworkTask
-
     @discardableResult
     func send<T: Decodable>(
         request: URLRequest,

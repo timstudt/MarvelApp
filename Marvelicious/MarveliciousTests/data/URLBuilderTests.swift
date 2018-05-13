@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import Marvelicious
 
 class URLBuilderTests: XCTestCase {
 
@@ -47,7 +48,13 @@ class URLBuilderTests: XCTestCase {
         XCTAssertEqual(builder.build(), expectedURL, "unexpected url returned")
     }
 
-    func testPAthAndQuery() {
+    func testParameters() {
+        builder.add(parameters: ["query": "hello", "limit": "10"])
+        let expectedURL = URL(string: "\(testURL.absoluteURL)?query=hello&limit=10")!
+        XCTAssertEqual(builder.build(), expectedURL, "unexpected url returned")
+    }
+    
+   func testPathAndQuery() {
         builder.add(queries: [URLQueryItem(name: "query", value: "hello")])
         builder.add(path: "hello")
         let expectedURL = URL(string: "\(testURL.absoluteURL)/hello?query=hello")!

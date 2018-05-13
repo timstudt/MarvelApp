@@ -15,8 +15,8 @@ extension CharacterDetailsView {
     static func view(character: Character, builder: ModuleBuilder = ModuleBuilder()) -> View {
         let view = self.init()
         view.character = character
+        //For now use simple view with character item, no need for presenter, etc
         return builder
-//            .add(presenter: )
             .add(view: view)
             .build()
     }

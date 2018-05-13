@@ -24,7 +24,7 @@ final class CharacterCollectionPresenter: Presenter {
     typealias Response = (data: [Character]?, error: Error?)
 
     // MARK: - Module
-    private var dataSource: CharacterService?
+    var dataSource: CharacterService?
 
     // MARK: - ViewDataSource
     override func loadData() {

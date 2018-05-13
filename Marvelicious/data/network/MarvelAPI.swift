@@ -41,10 +41,12 @@ public struct MarvelAPIClient: MarvelAPI {
 public protocol MarvelAPI: API {
     var baseURL: URL { get }
     var authHeaders: Parameters { get }
+
+    func request(for endpoint: MarvelEndpoint) -> URLRequest
 }
 
 extension MarvelAPI {
-    var defaultURLBuilder: URLBuilder {
+    public var defaultURLBuilder: URLBuilder {
         let authHeadersQueryItems = authHeaders.map { URLQueryItem(name: $0, value: $1) }
         let builder = URLBuilder(baseURL: baseURL)
         builder
@@ -52,21 +54,21 @@ extension MarvelAPI {
         return builder
     }
 
-    func request(for endpoint: MarvelEndpoint) -> URLRequest {
+    public func request(for endpoint: MarvelEndpoint) -> URLRequest {
         let builder = urlRequestBuilder(url: url(for: endpoint))
         return builder
             .add(method: endpoint.method)
             .build()
     }
 
-    func url(for endpoint: MarvelEndpoint) -> URL {
+    public func url(for endpoint: MarvelEndpoint) -> URL {
         return defaultURLBuilder
             .add(path: endpoint.path)
             .build()!
     }
 }
 
-enum MarvelEndpoint {
+public enum MarvelEndpoint {
     case characters(String?)
 
     var path: String {
