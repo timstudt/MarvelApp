@@ -8,6 +8,10 @@
 
 import Foundation
 
+protocol CharacterCollectionDataSource: ViewDataSource {
+    func search(query: String)
+}
+
 extension CharacterCollectionPresenter {
     static func presenter() -> CharacterCollectionPresenter {
         let presenter = CharacterCollectionPresenter()

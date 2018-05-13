@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+ protocol that declares a configure method to configure a generic cell with generic model
+ */
 public protocol UICellConfigurable {
     associatedtype Cell
     associatedtype Model

@@ -9,19 +9,21 @@
 import UIKit
 
 extension CharacterCollectionView {
-    static func view(builder: ModuleBuilder = ModuleBuilder()) -> View {
+    static func view(builder: CharacterCollectionModuleBuilder = CharacterCollectionModuleBuilder()) -> CharacterCollectionView {
         let view = self.init()
         return builder
             .add(presenter: CharacterCollectionPresenter.presenter())
             .add(view: view)
+            .add(router: CharacterCollectionRouter())
             .build()
     }
 }
 
 final class CharacterCollectionView: View {
-
-    let collectionViewDataSource = CollectionViewDataSource<CharacterCollectionViewCellConfigurator>()
     
+    var router: CharacterCollectionRoutable?
+    let collectionViewDataSource = CollectionViewDataSource<CharacterCollectionViewCellConfigurator>()
+
     // MARK: - subiews
     lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
@@ -49,12 +51,17 @@ final class CharacterCollectionView: View {
     
     // MARK: - private methods
     private func setupViews() {
+        title = "Marvel"
+
+        navigationController?.hidesBarsOnSwipe = true
+        
         collectionView.contentInsetAdjustmentBehavior = .always
         collectionView.backgroundColor = .white
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(collectionView)
         setupConstraints()
         collectionViewDataSource.collectionView = collectionView
+        collectionView.delegate = self
     }
 
     private func setupConstraints() {
@@ -73,5 +80,12 @@ final class CharacterCollectionView: View {
                 .bottomAnchor
                 .constraint(equalTo: margins.bottomAnchor)
         ])
+    }
+}
+
+extension CharacterCollectionView: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let character = collectionViewDataSource.data?[indexPath.row] else { return }
+        router?.route(to: .characterDetails(character))
     }
 }

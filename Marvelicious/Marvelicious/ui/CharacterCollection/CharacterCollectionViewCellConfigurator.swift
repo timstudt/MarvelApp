@@ -9,6 +9,9 @@
 import UIKit
 import AlamofireImage
 
+/**
+ Configurator for character collection view cell using the Character model
+ */
 final class CharacterCollectionViewCellConfigurator: NSObject, UICollectionViewCellConfigurable {
     typealias Cell = CharacterCollectionViewCell
     typealias Model = Character

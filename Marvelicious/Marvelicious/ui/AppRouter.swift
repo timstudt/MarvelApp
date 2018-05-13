@@ -8,31 +8,43 @@
 
 import UIKit
 
-struct AppRouter {
+class AppRouter {
     enum Route {
-        case characterCollection
-        case characterDetails(Character)
+        case characters
     }
     
-    static let shared = AppRouter()
-    
+    weak var window: UIWindow?
     weak var current: UIViewController?
     
-    static func route(to: Route) -> UIViewController {
-        var router = shared
-        return router.route(to: to)
+    init(window: UIWindow?) {
+        self.window = window
     }
     
-    mutating func route(to: Route) -> UIViewController {
-        var nextView: UIViewController!
-        switch to {
-        case .characterCollection:
-            nextView = CharacterCollectionView.view()
-        case .characterDetails(let character):
-//            nextView =
-            break
+    @discardableResult
+    func route(to route: Route) -> Bool {
+        guard let window = window else {
+            assertionFailure("unexpected found window nil")
+            return false
         }
-        current = nextView
-        return nextView
+        
+        if let nextView = viewController(for: route) {
+            window.rootViewController = UINavigationController(rootViewController: nextView)
+            window.makeKeyAndVisible()
+            current = nextView
+        } else {
+            current = nil
+        }
+        
+        return current != nil
     }
+    
+    func viewController(for route: Route) -> UIViewController? {
+        var viewController: UIViewController?
+        switch route {
+        case .characters:
+            viewController = CharacterCollectionView.view()
+        }
+        return viewController
+    }
+    
 }

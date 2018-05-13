@@ -12,10 +12,14 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    var appRouter: AppRouter!
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        window?.rootViewController = AppRouter.route(to: .characterCollection)
-        window?.makeKeyAndVisible()
+        
+        appRouter = AppRouter(window: window)
+        appRouter.route(to: .characters)
+        
         return true
     }
 

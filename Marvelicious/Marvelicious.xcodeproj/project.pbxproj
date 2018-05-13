@@ -40,6 +40,8 @@
 		6AD24AFB20A7967900A9E853 /* CharacterCollectionViewCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD24AFA20A7967900A9E853 /* CharacterCollectionViewCellConfigurator.swift */; };
 		6AD24AFD20A797DE00A9E853 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD24AFC20A797DE00A9E853 /* UIImageViewExtension.swift */; };
 		6AD24AFF20A7AAA900A9E853 /* CharacterDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD24AFE20A7AAA900A9E853 /* CharacterDetailsView.swift */; };
+		6AD24B0120A8361400A9E853 /* CharacterCollectionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD24B0020A8361400A9E853 /* CharacterCollectionRouter.swift */; };
+		6AD24B0320A83D2A00A9E853 /* CharacterCollectionModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD24B0220A83D2A00A9E853 /* CharacterCollectionModuleBuilder.swift */; };
 		6AD346DA20A62C3500F4E35F /* MarvelAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD346D920A62C3500F4E35F /* MarvelAPI.swift */; };
 		6AD346DF20A6359200F4E35F /* CharacterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD346DE20A6359200F4E35F /* CharacterService.swift */; };
 		6AD346E120A6361800F4E35F /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD346E020A6361800F4E35F /* Character.swift */; };
@@ -122,6 +124,8 @@
 		6AD24AFA20A7967900A9E853 /* CharacterCollectionViewCellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCollectionViewCellConfigurator.swift; sourceTree = "<group>"; };
 		6AD24AFC20A797DE00A9E853 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		6AD24AFE20A7AAA900A9E853 /* CharacterDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsView.swift; sourceTree = "<group>"; };
+		6AD24B0020A8361400A9E853 /* CharacterCollectionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CharacterCollectionRouter.swift; path = ../../../../../../../../Documents/CharacterCollectionRouter.swift; sourceTree = "<group>"; };
+		6AD24B0220A83D2A00A9E853 /* CharacterCollectionModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CharacterCollectionModuleBuilder.swift; path = ../../../../../../../../Documents/CharacterCollectionModuleBuilder.swift; sourceTree = "<group>"; };
 		6AD346D920A62C3500F4E35F /* MarvelAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelAPI.swift; sourceTree = "<group>"; };
 		6AD346DE20A6359200F4E35F /* CharacterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterService.swift; sourceTree = "<group>"; };
 		6AD346E020A6361800F4E35F /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
@@ -375,8 +379,10 @@
 		6AD346DC20A62FB200F4E35F /* CharacterCollection */ = {
 			isa = PBXGroup;
 			children = (
+				6AD24B0220A83D2A00A9E853 /* CharacterCollectionModuleBuilder.swift */,
 				6AD24AD220A71B7D00A9E853 /* CharacterCollectionView.swift */,
 				6AD24AED20A7394B00A9E853 /* CharacterCollectionPresenter.swift */,
+				6AD24B0020A8361400A9E853 /* CharacterCollectionRouter.swift */,
 				6AD24AEB20A7388800A9E853 /* CharacterCollectionViewState.swift */,
 				6AD24AF120A7777700A9E853 /* CharacterCollectionViewCell.swift */,
 				6AD24AFA20A7967900A9E853 /* CharacterCollectionViewCellConfigurator.swift */,
@@ -745,6 +751,7 @@
 			files = (
 				6AD346FE20A6502300F4E35F /* DataMappable.swift in Sources */,
 				6AD346F620A6496000F4E35F /* NetworkLogger.swift in Sources */,
+				6AD24B0120A8361400A9E853 /* CharacterCollectionRouter.swift in Sources */,
 				6AD24AF920A7962400A9E853 /* UICollectionViewCellConfigurable.swift in Sources */,
 				6AD346FC20A64EB400F4E35F /* Serializer.swift in Sources */,
 				6A836AF620A629E300872528 /* AppDelegate.swift in Sources */,
@@ -773,6 +780,7 @@
 				6AD346EE20A63E9A00F4E35F /* NetworkError.swift in Sources */,
 				6AD24AEC20A7388800A9E853 /* CharacterCollectionViewState.swift in Sources */,
 				6AD24AFF20A7AAA900A9E853 /* CharacterDetailsView.swift in Sources */,
+				6AD24B0320A83D2A00A9E853 /* CharacterCollectionModuleBuilder.swift in Sources */,
 				6AD24AF620A792ED00A9E853 /* CollectionViewDataSource.swift in Sources */,
 				6AD24AFB20A7967900A9E853 /* CharacterCollectionViewCellConfigurator.swift in Sources */,
 				6AD346FA20A64AF600F4E35F /* NetworkCharacter.swift in Sources */,

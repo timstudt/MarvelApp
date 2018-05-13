@@ -17,7 +17,9 @@ public extension ReusableCell {
         return String(describing: self)
     }
 }
-
+/**
+ Generic CollectionViewDataSource implements UICollectionViewDataSource for simple collectionViews with one cell type and one array of data; uses a UICollectionViewCellConfigurable configurator to configure cells
+ */
 public class CollectionViewDataSource<CellConfiguratorType: NSObject>:
     NSObject,
     UICollectionViewDataSource
