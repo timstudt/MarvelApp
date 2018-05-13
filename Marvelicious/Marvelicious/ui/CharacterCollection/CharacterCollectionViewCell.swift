@@ -12,31 +12,31 @@ class CharacterCollectionViewCell: UICollectionViewCell {
     // MARK: - subviews
     let titleLabel = UILabel()
     let imageView = UIImageView()
-    
+
     private struct localConstants {
         static let margins: UIEdgeInsets = .zero
         static let font = UIFont.systemFont(ofSize: 10)
         static let textColor = UIColor.white
         static let labelBackgroundColor = UIColor.black.withAlphaComponent(0.5)
     }
-    
-    //MARK: - view overrides
+
+    // MARK: - view overrides
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
-    //MARK: - update
+
+    // MARK: - update
     func update(title: String?, imageURL: URL?) {
         titleLabel.text = title
 //        imageView.u
     }
-    
-    //MARK: - setup
+
+    // MARK: - setup
     private func setupViews() {
         contentView.layoutMargins = localConstants.margins
         setupBorder()
@@ -52,7 +52,7 @@ class CharacterCollectionViewCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         setupConstraints()
     }
-    
+
     private func setupConstraints() {
         let margins = contentView.layoutMarginsGuide
         NSLayoutConstraint.activate([
@@ -82,7 +82,7 @@ class CharacterCollectionViewCell: UICollectionViewCell {
                 .constraint(equalTo: margins.bottomAnchor)
            ])
     }
-    
+
     private func setupBorder() {
         layer.borderColor = UIColor.lightGray.cgColor
         layer.borderWidth = 1.0

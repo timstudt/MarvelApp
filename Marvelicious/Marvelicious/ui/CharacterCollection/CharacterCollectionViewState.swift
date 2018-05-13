@@ -12,7 +12,7 @@ final class CharacterCollectionViewState: ViewState<Character> {
     static func loading() -> CharacterCollectionViewState {
         return CharacterCollectionViewState(isLoading: true, error: nil, data: nil)
     }
-    
+
     static func hasLoaded(data: [Character]?, error: Error?) -> CharacterCollectionViewState {
         return CharacterCollectionViewState(isLoading: false, error: error, data: data)
     }

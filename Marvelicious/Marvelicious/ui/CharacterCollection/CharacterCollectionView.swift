@@ -20,7 +20,7 @@ extension CharacterCollectionView {
 }
 
 final class CharacterCollectionView: View {
-    
+
     var router: CharacterCollectionRoutable?
     let collectionViewDataSource = CollectionViewDataSource<CharacterCollectionViewCellConfigurator>()
 
@@ -34,8 +34,8 @@ final class CharacterCollectionView: View {
                                               collectionViewLayout: flowLayout)
         return collectionView
     }()
-    
-    //MARK: - view life cycle
+
+    // MARK: - view life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -48,13 +48,13 @@ final class CharacterCollectionView: View {
         collectionViewDataSource.data = state.data
         //TODO error handling
     }
-    
+
     // MARK: - private methods
     private func setupViews() {
         title = "Marvel"
 
         navigationController?.hidesBarsOnSwipe = true
-        
+
         collectionView.contentInsetAdjustmentBehavior = .always
         collectionView.backgroundColor = .white
         collectionView.translatesAutoresizingMaskIntoConstraints = false

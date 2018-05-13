@@ -21,7 +21,7 @@ struct CharacterDataMapper: DataMappable {
         }
         return mapped
     }
-    
+
     func unwrapCharacters(_ wrapper: Network.CharacterDataWrapper?) -> [Network.Character]? {
         //TODO handle pagination
         return wrapper?.data?.results

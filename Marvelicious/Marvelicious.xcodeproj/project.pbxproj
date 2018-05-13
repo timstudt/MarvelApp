@@ -42,6 +42,12 @@
 		6AD24AFF20A7AAA900A9E853 /* CharacterDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD24AFE20A7AAA900A9E853 /* CharacterDetailsView.swift */; };
 		6AD24B0120A8361400A9E853 /* CharacterCollectionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD24B0020A8361400A9E853 /* CharacterCollectionRouter.swift */; };
 		6AD24B0320A83D2A00A9E853 /* CharacterCollectionModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD24B0220A83D2A00A9E853 /* CharacterCollectionModuleBuilder.swift */; };
+		6AD24B0420A8602500A9E853 /* DataMappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD346FD20A6502300F4E35F /* DataMappable.swift */; };
+		6AD24B0520A8603300A9E853 /* NetworkCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD346F920A64AF600F4E35F /* NetworkCharacter.swift */; };
+		6AD24B0620A8627A00A9E853 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD346E020A6361800F4E35F /* Character.swift */; };
+		6AD24B0720A8628700A9E853 /* MarvelAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD346D920A62C3500F4E35F /* MarvelAPI.swift */; };
+		6AD24B0820A8628C00A9E853 /* CharacterNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD346E220A636EF00F4E35F /* CharacterNetworkService.swift */; };
+		6AD24B0920A8628E00A9E853 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD346E420A638D400F4E35F /* NetworkService.swift */; };
 		6AD346DA20A62C3500F4E35F /* MarvelAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD346D920A62C3500F4E35F /* MarvelAPI.swift */; };
 		6AD346DF20A6359200F4E35F /* CharacterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD346DE20A6359200F4E35F /* CharacterService.swift */; };
 		6AD346E120A6361800F4E35F /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD346E020A6361800F4E35F /* Character.swift */; };
@@ -52,7 +58,7 @@
 		6AD346EC20A63E0000F4E35F /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD346EB20A63E0000F4E35F /* HTTPMethod.swift */; };
 		6AD346EE20A63E9A00F4E35F /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD346ED20A63E9A00F4E35F /* NetworkError.swift */; };
 		6AD346F020A640CB00F4E35F /* URLRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD346EF20A640CB00F4E35F /* URLRequestBuilder.swift */; };
-		6AD346F220A648C200F4E35F /* AlamofireConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD346F120A648C200F4E35F /* AlamofireConnector.swift */; };
+		6AD346F220A648C200F4E35F /* AlamofireNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD346F120A648C200F4E35F /* AlamofireNetworkProvider.swift */; };
 		6AD346F420A6493100F4E35F /* NetworkTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD346F320A6493100F4E35F /* NetworkTask.swift */; };
 		6AD346F620A6496000F4E35F /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD346F520A6496000F4E35F /* NetworkLogger.swift */; };
 		6AD346F820A64A9A00F4E35F /* NetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD346F720A64A9A00F4E35F /* NetworkProvider.swift */; };
@@ -136,7 +142,7 @@
 		6AD346EB20A63E0000F4E35F /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		6AD346ED20A63E9A00F4E35F /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		6AD346EF20A640CB00F4E35F /* URLRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestBuilder.swift; sourceTree = "<group>"; };
-		6AD346F120A648C200F4E35F /* AlamofireConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireConnector.swift; sourceTree = "<group>"; };
+		6AD346F120A648C200F4E35F /* AlamofireNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireNetworkProvider.swift; sourceTree = "<group>"; };
 		6AD346F320A6493100F4E35F /* NetworkTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTask.swift; sourceTree = "<group>"; };
 		6AD346F520A6496000F4E35F /* NetworkLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLogger.swift; sourceTree = "<group>"; };
 		6AD346F720A64A9A00F4E35F /* NetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProvider.swift; sourceTree = "<group>"; };
@@ -359,7 +365,7 @@
 		6AD346D820A62BE400F4E35F /* connector */ = {
 			isa = PBXGroup;
 			children = (
-				6AD346F120A648C200F4E35F /* AlamofireConnector.swift */,
+				6AD346F120A648C200F4E35F /* AlamofireNetworkProvider.swift */,
 			);
 			path = connector;
 			sourceTree = "<group>";
@@ -764,7 +770,7 @@
 				6AD24AF220A7777700A9E853 /* CharacterCollectionViewCell.swift in Sources */,
 				6AD24AAE20A70EBB00A9E853 /* CharactersDataMapper.swift in Sources */,
 				6AD24AB120A7148500A9E853 /* AppRouter.swift in Sources */,
-				6AD346F220A648C200F4E35F /* AlamofireConnector.swift in Sources */,
+				6AD346F220A648C200F4E35F /* AlamofireNetworkProvider.swift in Sources */,
 				6AD24AD320A71B7D00A9E853 /* CharacterCollectionView.swift in Sources */,
 				6AD24ADE20A71C7C00A9E853 /* ModuleBuilder.swift in Sources */,
 				6AD24ADC20A71C7C00A9E853 /* Presenter.swift in Sources */,
@@ -808,13 +814,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6AD24B0620A8627A00A9E853 /* Character.swift in Sources */,
 				6AD24A9D20A6DDF000A9E853 /* MarveliciousDataTests.swift in Sources */,
 				6AD24AAB20A6DE8100A9E853 /* NetworkTask.swift in Sources */,
 				6AD24AAF20A70EBB00A9E853 /* CharactersDataMapper.swift in Sources */,
 				6AD24AAA20A6DE7E00A9E853 /* NetworkError.swift in Sources */,
+				6AD24B0720A8628700A9E853 /* MarvelAPI.swift in Sources */,
 				6AD24AA720A6DE7000A9E853 /* URLRequestBuilder.swift in Sources */,
+				6AD24B0420A8602500A9E853 /* DataMappable.swift in Sources */,
 				6AD24AA920A6DE7B00A9E853 /* HTTPMethod.swift in Sources */,
 				6AD24AA520A6DE0A00A9E853 /* URLBuilderTests.swift in Sources */,
+				6AD24B0920A8628E00A9E853 /* NetworkService.swift in Sources */,
+				6AD24B0520A8603300A9E853 /* NetworkCharacter.swift in Sources */,
+				6AD24B0820A8628C00A9E853 /* CharacterNetworkService.swift in Sources */,
 				6AD24AAC20A6DE8900A9E853 /* NetworkLogger.swift in Sources */,
 				6AD24AA620A6DE4800A9E853 /* URLBuilder.swift in Sources */,
 				6AD24AA820A6DE7500A9E853 /* API.swift in Sources */,

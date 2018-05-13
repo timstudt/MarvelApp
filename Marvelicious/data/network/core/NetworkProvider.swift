@@ -23,7 +23,7 @@ protocol DataRequestable {
 //        request: URLRequest,
 //        completion: @escaping (NetworkResponse<Data>) -> Void)
 //        -> NetworkTask
-    
+
     @discardableResult
     func send<T: Decodable>(
         request: URLRequest,

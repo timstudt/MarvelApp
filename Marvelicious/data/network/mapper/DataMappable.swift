@@ -17,5 +17,5 @@ protocol DataMappable {
 extension DataMappable {
     func map(_ data: [T]) -> [U] {
         return data.map { map($0) }
-    }    
+    }
 }

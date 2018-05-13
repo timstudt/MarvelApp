@@ -27,11 +27,11 @@ public extension API {
     var cachePolicy: URLRequest.CachePolicy { return .useProtocolCachePolicy }
     var timeoutInterval: TimeInterval { return 20.0 }
     var allHTTPHeaderFields: Parameters { return Parameters() }
-    
+
     func urlRequestBuilder(url: URL) -> URLRequestBuilder {
         return URLRequestBuilder(url: url)
             .add(cachePolicy: cachePolicy)
             .add(timeoutInterval: timeoutInterval)
             .add(allHeaderFields: allHTTPHeaderFields)
-    }    
+    }
 }

@@ -15,7 +15,7 @@ import AlamofireImage
 final class CharacterCollectionViewCellConfigurator: NSObject, UICollectionViewCellConfigurable {
     typealias Cell = CharacterCollectionViewCell
     typealias Model = Character
-    
+
     func configure(_ cell: Cell, with model: Model) {
         cell.titleLabel.text = model.name
         cell.imageView.setImage(

@@ -21,7 +21,7 @@ struct MarvelAPIConfiguration {
                 "ts": ts,
                 "hash": hash]
     }
-    
+
     init(keys: MarveliciousKeys = MarveliciousKeys()) {
         privatekey = keys.marvelPrivateKey
         apikey = keys.marvelApiKey
@@ -31,7 +31,7 @@ struct MarvelAPIConfiguration {
 public struct MarvelAPIClient: MarvelAPI {
     public var baseURL: URL
     public var authHeaders: Parameters
-    
+
     init(configuration: MarvelAPIConfiguration = MarvelAPIConfiguration()) {
         self.baseURL = configuration.baseURL
         self.authHeaders = configuration.authHeader
@@ -51,14 +51,14 @@ extension MarvelAPI {
         .defaultQueryItems = authHeadersQueryItems
         return builder
     }
-    
+
     func request(for endpoint: MarvelEndpoint) -> URLRequest {
         let builder = urlRequestBuilder(url: url(for: endpoint))
         return builder
             .add(method: endpoint.method)
             .build()
     }
-    
+
     func url(for endpoint: MarvelEndpoint) -> URL {
         return defaultURLBuilder
             .add(path: endpoint.path)
@@ -68,7 +68,7 @@ extension MarvelAPI {
 
 enum MarvelEndpoint {
     case characters(String?)
-    
+
     var path: String {
         switch self {
         case .characters(let id) where id != nil:
@@ -77,7 +77,7 @@ enum MarvelEndpoint {
             return "characters"
         }
     }
-    
+
     var method: HTTPMethod {
         switch self {
         case .characters:

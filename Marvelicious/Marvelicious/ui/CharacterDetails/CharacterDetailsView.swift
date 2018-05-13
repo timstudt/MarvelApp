@@ -23,14 +23,14 @@ extension CharacterDetailsView {
 }
 
 final class CharacterDetailsView: View {
-    
-    //Mark: - models
+
+    // MARK: - models
     var character: Character?
-    
-    //MARK: - subviews
+
+    // MARK: - subviews
     weak var imageView: UIImageView!
     weak var descriptionLabel: UILabel!
-    
+
     private struct localConstants {
         static let space: CGFloat = 8.0
         static let font = UIFont.systemFont(ofSize: 16)
@@ -39,24 +39,24 @@ final class CharacterDetailsView: View {
         static let backgroundColor = UIColor.white
     }
 
-    //MARK: - view life cycle
+    // MARK: - view life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         update(from: character)
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if navigationController?.isNavigationBarHidden == true {
             navigationController?.setNavigationBarHidden(false, animated: true)
         }
     }
-    
+
     // MARK: - View override
     override func render(state: ViewStateProtocol) {
     }
-    
+
     func update(from character: Character?) {
         title = character?.name
         if let thumbnail = character?.thumbnail {
@@ -64,17 +64,17 @@ final class CharacterDetailsView: View {
         }
         descriptionLabel.text = character?.description
     }
-    
+
     // MARK: - private methods
     private func setupViews() {
         view.backgroundColor = .white
-        
+
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(imageView)
         self.imageView = imageView
-        
+
         let descriptionLabel = UILabel()
         descriptionLabel.font = localConstants.font
         descriptionLabel.textColor = localConstants.textColor
@@ -82,10 +82,10 @@ final class CharacterDetailsView: View {
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(descriptionLabel)
         self.descriptionLabel = descriptionLabel
-        
+
         setupConstraints()
     }
-    
+
     private func setupConstraints() {
         let margins = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([

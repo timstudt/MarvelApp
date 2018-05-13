@@ -14,25 +14,25 @@ public class URLRequestBuilder {
     init(url: URL) {
         urlRequest = URLRequest(url: url)
     }
-    
+
     @discardableResult
     func add(method: HTTPMethod) -> URLRequestBuilder {
         urlRequest.httpMethod = method.rawValue
         return self
     }
-    
+
     @discardableResult
     func add(cachePolicy: URLRequest.CachePolicy) -> URLRequestBuilder {
         urlRequest.cachePolicy = cachePolicy
         return self
     }
-    
+
     @discardableResult
     func add(timeoutInterval: TimeInterval) -> URLRequestBuilder {
         urlRequest.timeoutInterval = timeoutInterval
         return self
     }
-    
+
     @discardableResult
     func add(headerFields: [String: String]) -> URLRequestBuilder {
         headerFields.forEach { (key, value) in
@@ -40,13 +40,12 @@ public class URLRequestBuilder {
         }
         return self
     }
-    
+
     @discardableResult
     func add(allHeaderFields: [String: String]) -> URLRequestBuilder {
         urlRequest.allHTTPHeaderFields = allHeaderFields
         return self
     }
-    
 
     func build() -> URLRequest {
         return urlRequest

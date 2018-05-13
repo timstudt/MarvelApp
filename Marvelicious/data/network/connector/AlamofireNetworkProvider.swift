@@ -1,5 +1,5 @@
 //
-//  Connector.swift
+//  AlamofireNetworkProvider.swift
 //  Marvelicious
 //
 //  Created by Tim Studt on 11/05/2018.
@@ -11,15 +11,15 @@ import Alamofire
 /**
  Network provider implemented with Alamofire
  */
-struct AlamofireConnector: NetworkProvider {
-    
+struct AlamofireNetworkProvider: NetworkProvider {
+
     var logger: NetworkLoggable?
     let sessionManager = Alamofire.SessionManager.default
-    
+
     init(logger: NetworkLoggable? = NetworkLogger()) {
         self.logger = logger
     }
-    
+
     @discardableResult
     func send<T>(request: URLRequest,
                  serializer: Serializable?,
@@ -35,12 +35,12 @@ struct AlamofireConnector: NetworkProvider {
     }
 }
 
-extension AlamofireConnector: ImageDownloadRequestable {
+extension AlamofireNetworkProvider: ImageDownloadRequestable {
     func download(request: URLRequest,
                   progress: @escaping (Progress) -> Void,
                   completion: @escaping (NetworkResponse<Data>) -> Void)
         -> NetworkTask {
-            
+
             return sessionManager
                 .request(request)
                 .validate()
@@ -50,7 +50,7 @@ extension AlamofireConnector: ImageDownloadRequestable {
     }
 }
 
-//MARK: - Alamofire extensions for serializing JSON responses to Decodable values
+// MARK: - Alamofire extensions for serializing JSON responses to Decodable values
 extension Alamofire.DataRequest: NetworkTask {
     /**
      default response mapper
@@ -70,7 +70,7 @@ extension Alamofire.DataRequest: NetworkTask {
                     completionHandler(mappedResponse)
             }
     }
-    
+
     /**
      generic response mapper
      - parameter serializer: serializes response data
@@ -83,7 +83,7 @@ extension Alamofire.DataRequest: NetworkTask {
         serializer: Serializable?,
         logger: NetworkLoggable? = nil,
         completionHandler: @escaping (NetworkResponse<T>) -> Void)
-        -> Self where T : Decodable {
+        -> Self where T: Decodable {
             return
                 log(logger)
                 .responseData(completionHandler: { (response) in
@@ -94,20 +94,20 @@ extension Alamofire.DataRequest: NetworkTask {
                     completionHandler(networkResponse)
             })
     }
-    
-    //MARK: - Logging
-    func log(_ logger:NetworkLoggable? = nil) -> Self {
+
+    // MARK: - Logging
+    func log(_ logger: NetworkLoggable? = nil) -> Self {
         logger?.log(response: self.response)
         return self
     }
-    
-    //MARK: - Mapping
+
+    // MARK: - Mapping
     private func map<T: Decodable>(response: Alamofire.DataResponse<T>)
         -> NetworkResponse<T> {
             return (response.value, response.error)
     }
-    
-    //MARK: - Parsing
+
+    // MARK: - Parsing
     /**
      parse Alamofire Data Response to Network response with decoded value T
      - parameter response: Alamofire.DataResponse<Data>

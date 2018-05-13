@@ -7,25 +7,26 @@
 //
 
 import Foundation
+
 enum Network {}
 
 extension Network {
     struct CharacterDataWrapper: Codable {
         var data: CharacterDataContainer?
     }
-    
+
     struct CharacterDataContainer: Codable {
         var results: [Character]?
     }
-    
+
     struct Character: Codable {
         var name: String?
         var description: String?
         var thumbnail: Image?
     }
-    
+
     struct Image: Codable {
         var path: String?
-        var `extension`: String?        
+        var `extension`: String?
     }
 }

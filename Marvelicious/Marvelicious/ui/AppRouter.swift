@@ -12,21 +12,21 @@ class AppRouter {
     enum Route {
         case characters
     }
-    
+
     weak var window: UIWindow?
     weak var current: UIViewController?
-    
+
     init(window: UIWindow?) {
         self.window = window
     }
-    
+
     @discardableResult
     func route(to route: Route) -> Bool {
         guard let window = window else {
             assertionFailure("unexpected found window nil")
             return false
         }
-        
+
         if let nextView = viewController(for: route) {
             window.rootViewController = UINavigationController(rootViewController: nextView)
             window.makeKeyAndVisible()
@@ -34,10 +34,10 @@ class AppRouter {
         } else {
             current = nil
         }
-        
+
         return current != nil
     }
-    
+
     func viewController(for route: Route) -> UIViewController? {
         var viewController: UIViewController?
         switch route {
@@ -46,5 +46,5 @@ class AppRouter {
         }
         return viewController
     }
-    
+
 }
