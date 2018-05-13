@@ -35,8 +35,9 @@ final class CharacterCollectionView: UIViewController, PresenterOutput {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.itemSize = CGSize(width: 100, height: 100)
         flowLayout.minimumInteritemSpacing = 8
-        flowLayout.sectionInset = UIEdgeInsets(top: 16, left: 8, bottom: 8, right: 8)
+        flowLayout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         flowLayout.scrollDirection = .vertical
+        flowLayout.headerReferenceSize = CGSize(width: 320, height: 20)
         let collectionView = UICollectionView(frame: view.bounds,
                                               collectionViewLayout: flowLayout)
         return collectionView
@@ -56,6 +57,7 @@ final class CharacterCollectionView: UIViewController, PresenterOutput {
     // MARK: - PresenterOutput
     func render(state: ViewStateProtocol) {
         guard let state = state as? CharacterCollectionViewState else { return }
+        collectionViewDataSource.isLoading = state.isLoading
         collectionViewDataSource.data = state.data
         //TODO error handling
     }
@@ -108,6 +110,7 @@ final class CharacterCollectionView: UIViewController, PresenterOutput {
 }
 
 extension CharacterCollectionView: UICollectionViewDelegate {
+    // MARK: - UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let character = collectionViewDataSource.data?[indexPath.row] else { return }
         router?.route(to: .characterDetails(character))

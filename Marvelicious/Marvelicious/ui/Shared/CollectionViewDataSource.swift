@@ -16,6 +16,7 @@ public class CollectionViewDataSource<CellConfiguratorType: NSObject>:
     UICollectionViewDataSource
     where CellConfiguratorType: UICollectionViewCellConfigurable {
 
+    var isLoading: Bool = false
     var data: [CellConfiguratorType.Model]? {
         didSet { collectionView?.reloadData() }
     }
@@ -34,6 +35,7 @@ public class CollectionViewDataSource<CellConfiguratorType: NSObject>:
         collectionView?.register(
             CellConfiguratorType.Cell.self,
             forCellWithReuseIdentifier: CellConfiguratorType.reuseIdentifier)
+        collectionView?.register(CollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "StatusHeader")
         collectionView?.dataSource = self
     }
 
@@ -56,5 +58,14 @@ public class CollectionViewDataSource<CellConfiguratorType: NSObject>:
             assert(false, "unregisted cell type - \(cell)")
         }
         return cell
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionElementKindSectionHeader {
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "StatusHeader", for: indexPath) as! CollectionViewHeader
+            headerView.update(isLoading: isLoading, hasData: data?.isEmpty == false)
+            return headerView
+        }
+        return UICollectionReusableView()
     }
 }

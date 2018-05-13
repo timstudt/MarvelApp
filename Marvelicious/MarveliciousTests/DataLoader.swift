@@ -42,6 +42,5 @@ struct DataParser {
             print("Err", err)
             return nil
         }
-        return nil
     }
 }
