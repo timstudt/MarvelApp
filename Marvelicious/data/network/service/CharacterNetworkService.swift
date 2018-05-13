@@ -23,7 +23,7 @@ public class CharacterNetworkService: NetworkService<MarvelAPIClient>, Character
     let serializer = Serializer()
     var characterMapper = CharacterDataMapper()
 
-    private weak var currentTask: NetworkTask?
+    weak var currentTask: NetworkTask?
 
     public func characters(query: String?, completion: @escaping (Response<Character>) -> Void) {
         guard let request = api?.request(for: .characters(query)) else {

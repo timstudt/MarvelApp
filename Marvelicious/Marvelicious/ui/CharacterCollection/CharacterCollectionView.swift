@@ -33,11 +33,16 @@ final class CharacterCollectionView: UIViewController, PresenterOutput {
     // MARK: - subiews
     lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.itemSize = CGSize(width: 100, height: 100)
+        flowLayout.itemSize = CGSize(width: 100,
+                                     height: 100)
         flowLayout.minimumInteritemSpacing = 8
-        flowLayout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        flowLayout.sectionInset = UIEdgeInsets(top: 8,
+                                               left: 8,
+                                               bottom: 8,
+                                               right: 8)
         flowLayout.scrollDirection = .vertical
-        flowLayout.headerReferenceSize = CGSize(width: 320, height: 20)
+        flowLayout.headerReferenceSize = CGSize(width: 320,
+                                                height: 20)
         let collectionView = UICollectionView(frame: view.bounds,
                                               collectionViewLayout: flowLayout)
         return collectionView
@@ -74,6 +79,7 @@ final class CharacterCollectionView: UIViewController, PresenterOutput {
 
     private func setupCollectionView() {
         collectionView.contentInsetAdjustmentBehavior = .always
+        collectionView.alwaysBounceVertical = true
         collectionView.backgroundColor = .white
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(collectionView)
@@ -120,7 +126,8 @@ extension CharacterCollectionView: UICollectionViewDelegate {
 extension CharacterCollectionView: UISearchResultsUpdating {
     // MARK: - UISearchResultsUpdating Delegate
     func updateSearchResults(for searchController: UISearchController) {
-        guard let query = searchController.searchBar.text else { return }
+        guard let query = searchController.searchBar.text,
+            !query.isEmpty || !searchController.isActive else { return }
         dataSource?.search(query: query)
     }
 }
