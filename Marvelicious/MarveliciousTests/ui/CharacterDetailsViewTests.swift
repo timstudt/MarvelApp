@@ -34,7 +34,7 @@ class CharacterDetailsViewTests: XCTestCase {
 
     func testSubviewContent() {
         _ = sut.view
-        
+
         let dataLoader = DataLoader()
         try! dataLoader.load(filename: "character", fileType: "json")
         let character: Marvelicious.Character = dataLoader.parse()!
@@ -42,7 +42,7 @@ class CharacterDetailsViewTests: XCTestCase {
             .hasLoaded(data: [character],
                        error: nil)
         sut.render(state: viewState)
-        
+
         XCTAssertEqual(sut.title, "Hulk")
         XCTAssertEqual(sut.descriptionLabel.text, "Caught in a gamma bomb explosion while trying to save the life of a teenager, Dr. Bruce Banner was transformed into the incredibly powerful creature called the Hulk. An all too often misunderstood hero, the angrier the Hulk gets, the stronger the Hulk gets.")
     }

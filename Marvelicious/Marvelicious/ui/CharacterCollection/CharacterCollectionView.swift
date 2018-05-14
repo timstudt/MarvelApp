@@ -63,7 +63,7 @@ final class CharacterCollectionView: UIViewController, PresenterOutput {
         super.viewDidDisappear(animated)
         stopObserveKeyboardNotifications()
     }
-    
+
     // MARK: - PresenterOutput
     func render(state: ViewStateProtocol) {
         guard let state = state as? CharacterViewState else { return }
@@ -118,7 +118,7 @@ final class CharacterCollectionView: UIViewController, PresenterOutput {
                 .constraint(equalTo: margins.bottomAnchor)
         ])
     }
-    
+
     private func startObserveKeyboardNotifications() {
         let notificationCenter = NotificationCenter.default
         notificationCenter
@@ -132,15 +132,15 @@ final class CharacterCollectionView: UIViewController, PresenterOutput {
                          name: Notification.Name.UIKeyboardWillHide,
                          object: nil)
     }
-    
+
     private func stopObserveKeyboardNotifications() {
         let notificationCenter = NotificationCenter.default
         notificationCenter.removeObserver(self)
     }
-    
+
     @objc func adjustForKeyboard(notification: Notification) {
         let userInfo = notification.userInfo!
-        
+
         let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         let keyboardViewEndFrame = collectionView.convert(keyboardScreenEndFrame, from: view.window)
         let duration: TimeInterval = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! TimeInterval

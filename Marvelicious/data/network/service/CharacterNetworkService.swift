@@ -68,5 +68,5 @@ public class CharacterNetworkService: NetworkService<MarvelAPIClient>, Character
                     completion((data, response.error))
             })
     }
-    
+
 }

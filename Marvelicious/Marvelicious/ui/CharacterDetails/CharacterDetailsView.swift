@@ -127,7 +127,7 @@ final class CharacterDetailsView: View {
                 .constraint(lessThanOrEqualTo: margins.bottomAnchor)
             ])
     }
-    
+
     func updateImageViewSize(ratio: CGFloat) {
         imageView
             .heightAnchor

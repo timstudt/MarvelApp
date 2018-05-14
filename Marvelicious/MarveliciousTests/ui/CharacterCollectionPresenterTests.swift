@@ -21,7 +21,7 @@ class MockCharacterService: CharacterService {
         didCallLoadCharacters = true
         completion((testData, testError))
     }
-    
+
     func characters(id: Int, completion: @escaping ((data: [Marvelicious.Character]?, error: Error?)) -> Void) {
         didCallLoadCharactersById = true
         completion((testData, testError))

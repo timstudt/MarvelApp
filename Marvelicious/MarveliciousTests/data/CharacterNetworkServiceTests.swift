@@ -20,7 +20,7 @@ class MockConnector: NetworkProvider, ImageDownloadRequestable {
     deinit {
         didCallDeinit = true
     }
-    
+
     func send(request: URLRequest,
               completion: @escaping (((data: Data?, error: Error?)) -> Void))
         -> NetworkTask {
