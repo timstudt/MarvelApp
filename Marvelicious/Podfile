@@ -16,7 +16,7 @@ target 'Marvelicious' do
   pod 'Alamofire'
   pod 'AlamofireImage'
   pod 'CryptoSwift'
-
+  
   target 'MarveliciousTests' do
     inherit! :search_paths
     # Pods for testing

@@ -13,6 +13,7 @@ struct CharacterDataMapper: DataMappable {
     typealias U = Character
     func map(_ data: T) -> U {
         var mapped = U()
+        mapped.id = data.id
         mapped.name = data.name
         mapped.description = data.description
         if let thumbnailPath = data.thumbnail?.path,

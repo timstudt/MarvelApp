@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+ simple data mapper between two data types
+ */
 protocol DataMappable {
     associatedtype T
     associatedtype U

@@ -32,7 +32,7 @@ class CharacterDataMapperTests: XCTestCase {
     }
 
     func testMapItem() {
-        let data = Network.Character(name: "Test", description: "testing", thumbnail: Network.Image(path: "file", extension: "jpg"))
+        let data = Network.Character(id: 12, name: "Test", description: "testing", thumbnail: Network.Image(path: "file", extension: "jpg"))
         let mappedData = sut.map(data)
         XCTAssertEqual(mappedData.description, "testing")
         XCTAssertNotNil(mappedData.thumbnail)

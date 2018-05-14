@@ -18,6 +18,9 @@ public extension CharacterNetworkService {
     }
 }
 
+/**
+ NetworkService that implements CharacterService protocol; using MarvelAPIClient
+ */
 public class CharacterNetworkService: NetworkService<MarvelAPIClient>, CharacterService {
 
     let serializer = Serializer()
@@ -25,24 +28,45 @@ public class CharacterNetworkService: NetworkService<MarvelAPIClient>, Character
 
     weak var currentTask: NetworkTask?
 
+    /**
+     fetch characters which names start with query
+     - parameter query:
+     - parameter completion: handler that takes a response
+     */
     public func characters(query: String?, completion: @escaping (Response<Character>) -> Void) {
         guard let request = api?.request(for: .characters(query)) else {
             completion((nil, nil)); return
         }
+        handle(request: request, completion: completion)
+    }
 
+    /**
+     fetch characters by id
+     - parameter id: character id
+     - parameter completion: handler that takes a response
+     */
+    public func characters(id: Int, completion: @escaping ((data: [Character]?, error: Error?)) -> Void) {
+        guard let request = api?.request(for: .character(id)) else {
+            completion((nil, nil)); return
+        }
+        handle(request: request, completion: completion)
+     }
+
+    private func handle(request: URLRequest, completion: @escaping ((data: [Character]?, error: Error?)) -> Void) {
         currentTask?.cancel()
 
         currentTask = networkProvider?
             .send(
-            request: request,
-            serializer: serializer,
-            completion: { [weak self] (response: NetworkResponse<Network.CharacterDataWrapper>) in
-                var data: [Character]?
-                if let characters: [Network.Character] = self?.characterMapper.unwrapCharacters(response.data) {
-                    let mappedCharacters: [Character]? = self?.characterMapper.map(characters)
-                    data = mappedCharacters
-                }
-                completion((data, response.error))
-        })
+                request: request,
+                serializer: serializer,
+                completion: { [weak self] (response: NetworkResponse<Network.CharacterDataWrapper>) in
+                    var data: [Character]?
+                    if let characters: [Network.Character] = self?.characterMapper.unwrapCharacters(response.data) {
+                        let mappedCharacters: [Character]? = self?.characterMapper.map(characters)
+                        data = mappedCharacters
+                    }
+                    completion((data, response.error))
+            })
     }
+    
 }

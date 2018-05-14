@@ -12,18 +12,23 @@ extension CharacterDetailsView {
     /**
      factory method to create CharacterDetailsView instance
      */
-    static func view(character: Character) -> View {
+    static func view(characterId: Int) -> View {
         let view = self.init()
-        view.character = character
-        //For now use simple view with character item, no need for presenter, router, datasource etc
+        view.characterId = characterId
+        let presenter = CharacterDetailsPresenter.presenter()
+        presenter.userInterface = view
+        view.dataSource = presenter
+        //For now use simple view with character item, no need for router etc
         return view
     }
 }
 
 final class CharacterDetailsView: View {
 
+    var dataSource: CharacterDetailsDataSource?
+
     // MARK: - models
-    var character: Character?
+    var characterId: Int!
 
     // MARK: - subviews
     weak var imageView: UIImageView!
@@ -41,7 +46,7 @@ final class CharacterDetailsView: View {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        update(from: character)
+        dataSource?.load(id: characterId)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -53,12 +58,21 @@ final class CharacterDetailsView: View {
 
     // MARK: - View override
     override func render(state: ViewStateProtocol) {
+        guard let state = state as? CharacterViewState else { return }
+        if let character = state.data?.first {
+            update(from: character)
+        }
     }
 
     func update(from character: Character?) {
         title = character?.name
         if let thumbnail = character?.thumbnail {
-            imageView.setImage(url: thumbnail, placeholderImage: nil)
+            imageView
+                .setImage(url: thumbnail,
+                          completion: { [weak self] image in
+                            guard let size = image?.size else { return }
+                            self?.updateImageViewSize(ratio: size.height/size.width)
+                                        })
         }
         descriptionLabel.text = character?.description
     }
@@ -68,7 +82,7 @@ final class CharacterDetailsView: View {
         view.backgroundColor = .white
 
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(imageView)
         self.imageView = imageView
@@ -112,5 +126,13 @@ final class CharacterDetailsView: View {
                 .bottomAnchor
                 .constraint(lessThanOrEqualTo: margins.bottomAnchor)
             ])
+    }
+    
+    func updateImageViewSize(ratio: CGFloat) {
+        imageView
+            .heightAnchor
+            .constraint(equalTo: imageView.widthAnchor,
+                        multiplier: ratio).isActive = true
+
     }
 }

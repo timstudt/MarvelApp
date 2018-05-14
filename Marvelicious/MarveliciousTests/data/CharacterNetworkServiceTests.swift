@@ -11,11 +11,16 @@ import XCTest
 
 class MockConnector: NetworkProvider, ImageDownloadRequestable {
     var logger: NetworkLoggable?
+    var didCallDeinit = false
     var didCallSendData = false
     var didCallSendGenericData = false
     var didCallDownloadData = false
     var testData: Any?
 
+    deinit {
+        didCallDeinit = true
+    }
+    
     func send(request: URLRequest,
               completion: @escaping (((data: Data?, error: Error?)) -> Void))
         -> NetworkTask {

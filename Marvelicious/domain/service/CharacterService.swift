@@ -12,4 +12,5 @@ public typealias Response<T: Decodable> = (data: [T]?, error: Error?)
 
 public protocol CharacterService {
     func characters(query: String?, completion: @escaping (Response<Character>) -> Void)
+    func characters(id: Int, completion: @escaping (Response<Character>) -> Void)
 }

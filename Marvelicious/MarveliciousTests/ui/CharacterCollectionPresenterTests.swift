@@ -12,12 +12,18 @@ import XCTest
 class MockCharacterService: CharacterService {
 
     var didCallLoadCharacters = false
+    var didCallLoadCharactersById = false
 
     var testData: [Marvelicious.Character]?
     var testError: Error?
 
     func characters(query: String?, completion: @escaping ((data: [Marvelicious.Character]?, error: Error?)) -> Void) {
         didCallLoadCharacters = true
+        completion((testData, testError))
+    }
+    
+    func characters(id: Int, completion: @escaping ((data: [Marvelicious.Character]?, error: Error?)) -> Void) {
+        didCallLoadCharactersById = true
         completion((testData, testError))
     }
 }

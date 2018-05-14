@@ -33,12 +33,16 @@ class CharacterDetailsViewTests: XCTestCase {
     }
 
     func testSubviewContent() {
+        _ = sut.view
+        
         let dataLoader = DataLoader()
         try! dataLoader.load(filename: "character", fileType: "json")
-        sut.character = dataLoader.parse()
-        _ = sut.view
-        XCTAssertNotNil(sut.title, "")
-        XCTAssertNotNil(sut.descriptionLabel.text, "")
+        let character: Marvelicious.Character = dataLoader.parse()!
+        let viewState = CharacterViewState
+            .hasLoaded(data: [character],
+                       error: nil)
+        sut.render(state: viewState)
+        
         XCTAssertEqual(sut.title, "Hulk")
         XCTAssertEqual(sut.descriptionLabel.text, "Caught in a gamma bomb explosion while trying to save the life of a teenager, Dr. Bruce Banner was transformed into the incredibly powerful creature called the Hulk. An all too often misunderstood hero, the angrier the Hulk gets, the stronger the Hulk gets.")
     }
@@ -49,5 +53,4 @@ class CharacterDetailsViewTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-
 }

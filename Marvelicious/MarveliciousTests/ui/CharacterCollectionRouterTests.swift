@@ -34,7 +34,7 @@ class CharacterCollectionRouterTests: XCTestCase {
         let mockViewController = MockViewController()
         sut.viewController = mockViewController
         XCTAssertFalse(mockViewController.didCallShow)
-        sut.route(to: .characterDetails(Marvelicious.Character()))
+        sut.route(to: .characterDetails(12))
         XCTAssertTrue(mockViewController.didCallShow)
     }
 
