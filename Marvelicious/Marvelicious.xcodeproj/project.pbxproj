@@ -128,8 +128,8 @@
 		6AD24AFA20A7967900A9E853 /* CharacterCollectionViewCellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCollectionViewCellConfigurator.swift; sourceTree = "<group>"; };
 		6AD24AFC20A797DE00A9E853 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		6AD24AFE20A7AAA900A9E853 /* CharacterDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsView.swift; sourceTree = "<group>"; };
-		6AD24B0020A8361400A9E853 /* CharacterCollectionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CharacterCollectionRouter.swift; path = ../../../../../../../../Documents/CharacterCollectionRouter.swift; sourceTree = "<group>"; };
-		6AD24B0220A83D2A00A9E853 /* CharacterCollectionModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CharacterCollectionModuleBuilder.swift; path = ../../../../../../../../Documents/CharacterCollectionModuleBuilder.swift; sourceTree = "<group>"; };
+		6AD24B0020A8361400A9E853 /* CharacterCollectionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCollectionRouter.swift; sourceTree = "<group>"; };
+		6AD24B0220A83D2A00A9E853 /* CharacterCollectionModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCollectionModuleBuilder.swift; sourceTree = "<group>"; };
 		6AD24B0A20A8655400A9E853 /* CharacterDataMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDataMapperTests.swift; sourceTree = "<group>"; };
 		6AD346D920A62C3500F4E35F /* MarvelAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelAPI.swift; sourceTree = "<group>"; };
 		6AD346DE20A6359200F4E35F /* CharacterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterService.swift; sourceTree = "<group>"; };
