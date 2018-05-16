@@ -60,13 +60,16 @@ public class CharacterNetworkService: NetworkService<MarvelAPIClient>, Character
                 request: request,
                 serializer: serializer,
                 completion: { [weak self] (response: NetworkResponse<Network.CharacterDataWrapper>) in
-                    var data: [Character]?
-                    if let characters: [Network.Character] = self?.characterMapper.unwrapCharacters(response.data) {
-                        let mappedCharacters: [Character]? = self?.characterMapper.map(characters)
-                        data = mappedCharacters
-                    }
+                    let data: [Character]? = self?.parse(response: response)
                     completion((data, response.error))
             })
     }
-
+    
+    private func parse(response: NetworkResponse<Network.CharacterDataWrapper>) -> [Character]? {
+        guard let characters: [Network.Character] =
+            characterMapper.unwrapCharacters(response.data) else {
+            return nil
+        }
+        return characterMapper.map(characters)
+    }
 }

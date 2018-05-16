@@ -24,21 +24,21 @@ class MarvelEndpointTests: XCTestCase {
         sut = MarvelEndpoint.characters(nil)
         XCTAssertEqual(sut.method.rawValue, "GET")
         XCTAssertEqual(sut.path, "characters")
-        XCTAssertEqual(sut.parameters, ["limit": "100"])
+        XCTAssertEqual(sut.parameters, ["limit": "30"])
     }
 
     func testCharactersEmptyQuery() {
         sut = MarvelEndpoint.characters("")
         XCTAssertEqual(sut.method.rawValue, "GET")
         XCTAssertEqual(sut.path, "characters")
-        XCTAssertEqual(sut.parameters, ["limit": "100"])
+        XCTAssertEqual(sut.parameters, ["limit": "30"])
     }
 
     func testCharactersQuery() {
         sut = MarvelEndpoint.characters("hello")
         XCTAssertEqual(sut.method.rawValue, "GET")
         XCTAssertEqual(sut.path, "characters")
-        XCTAssertEqual(sut.parameters, ["limit": "100", "nameStartsWith": "hello"])
+        XCTAssertEqual(sut.parameters, ["limit": "30", "nameStartsWith": "hello"])
     }
 
     func testCharacterId() {

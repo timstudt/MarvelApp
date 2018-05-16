@@ -93,10 +93,10 @@ public enum MarvelEndpoint {
     var parameters: Parameters {
         switch self {
         case .characters(let query) where query?.isEmpty == false:
-            return ["limit": "100",
+            return ["limit": "30",
                     "nameStartsWith": query!]
         case .characters:
-            return ["limit": "100"]
+            return ["limit": "30"]
         case .character:
             return [:]
         }
